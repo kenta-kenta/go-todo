@@ -14,11 +14,10 @@ func main() {
 	r := mux.NewRouter()
 	// ハンドラをサーバーで使用するように登録する
 	r.HandleFunc("/hello", handler.HelloHandler).Methods(http.MethodGet)
-	r.HandleFunc("/article", handler.PostArticleHandler).Methods(http.MethodPost)
-	r.HandleFunc("/article/list", handler.ArticleListHandler).Methods(http.MethodGet)
-	r.HandleFunc("/article/{id:[0-9]+}", handler.ArticleDetailHandler).Methods(http.MethodGet)
-	r.HandleFunc("/article/nice", handler.PostNiceHandler).Methods(http.MethodPost)
-	r.HandleFunc("/comment", handler.PostCommentHandler).Methods(http.MethodPost)
+	r.HandleFunc("/todo", handler.PostTodoHandler).Methods(http.MethodPost)
+	r.HandleFunc("/todo/list", handler.TodoListHandler).Methods(http.MethodGet)
+	r.HandleFunc("/todo/{id:[0-9]+}", handler.UpdateTodoHandler).Methods(http.MethodPatch)
+	r.HandleFunc("/todo/{id:[0-9]+}", handler.DeleteTodoHandler).Methods(http.MethodDelete)
 
 	// サーバー起動時のログ
 	log.Println("server start at port 8080")
